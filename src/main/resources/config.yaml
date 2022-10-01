@@ -1,0 +1,12 @@
+port: 8080
+services:
+  - healthUrl: http://localhost:8081/health
+    failureThreshold: 3
+    successThreshold: 3
+#  - healthUrl: http://localhost:8082/health
+#    failureThreshold: 3
+#    successThreshold: 3
+delay: 1000
+extraCodesToFailOn:
+  - 429
+  - 301

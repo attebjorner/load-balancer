@@ -1,0 +1,12 @@
+port: 8080
+services:
+  - healthUrl: http://tokenizer_replica:8000/token?id=health&timestamp=0
+    failureThreshold: 1
+    successThreshold: 1
+  - healthUrl: http://tokenizer:8000/token?id=health&timestamp=0
+    failureThreshold: 1
+    successThreshold: 1
+timeout: 500
+delay: 1000
+extraCodesToFailOn:
+  - 429

@@ -1,0 +1,25 @@
+version: "3.2"
+services:
+  balancer:
+    image: 'balancer:latest'
+    build:
+      context: ./docker/
+    depends_on:
+      - tokenizer
+      - tokenizer_replica
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./docker/conf:/conf
+    environment:
+      - BALANCER_CONFIG=conf/config.yaml
+
+  tokenizer:
+    image: harand/tokenizer
+    ports:
+      - "7000:8000"
+
+  tokenizer_replica:
+    image: harand/tokenizer
+    ports:
+      - "9000:8000"
